@@ -655,8 +655,8 @@ $('button[id^=\'button-custom-field\']').on('click', function() {
 		}
 	}, 500);
 });
-//--></script>
-<script type="text/javascript"><!--
+</script>
+<script type="text/javascript">
 $('.date').datetimepicker({
 	pickTime: false
 });

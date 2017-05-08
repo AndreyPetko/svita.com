@@ -1,4 +1,10 @@
 <?php
+
+error_reporting(0);
+ini_set('display_errors', FALSE);
+ini_set('display_startup_errors', FALSE);
+
+
 // Version
 define('VERSION', '2.3.0.2');
 
@@ -14,6 +20,6 @@ if (!defined('DIR_APPLICATION')) {
 }
 
 // Startup
-require_once(DIR_SYSTEM . 'startup.php');
+require_once(__DIR__ . '/system/startup.php');
 
 start('catalog');

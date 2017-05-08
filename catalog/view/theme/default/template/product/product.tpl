@@ -74,9 +74,19 @@
             <div class="button-wishlist" onclick="wishlist.add('<?php echo $product_id; ?>')">
               В список желаний
             </div>
-            <div id="button-cart" class="button-buy" >
+            <div id="button-cart" class="button-buy">
               В корзину
             </div>
+            <script>
+              $(document).ready(function() {
+                  $('#button-cart').click(function() {
+                    var height = $('#height').val();
+
+
+                    cart.add('<?php echo $product_id; ?>', 1, height);
+                  });
+              }); 
+            </script>
           </div>
         </div>
         <div class="col-md-3">
@@ -170,18 +180,13 @@
               <?php } ?>
             </div>
             <div id="extra-size-block">
-              <p>Название мерки</p>
+              <p>Рост</p>
+              <input type="text" name="" id="height">
+              <p>Обхват груди</p>
               <input type="text" name="">
-              <p>Название мерки</p>
+              <p>Обхват бедер</p>
               <input type="text" name="">
-              <p>Название мерки</p>
-              <input type="text" name="">
-              <p>Название мерки</p>
-              <input type="text" name="">
-
-              <p>Название мерки</p>
-              <input type="text" name="">
-              <p>Название мерки</p>
+              <p>Обхват талии</p>
               <input type="text" name="">
             </div>
           </div>
@@ -318,72 +323,72 @@
          });
          //--></script>
          <script type="text/javascript"><!--
-          $('#button-cart').on('click', function() {
-           $.ajax({
-            url: 'index.php?route=checkout/cart/add',
-            type: 'post',
-            data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
-            dataType: 'json',
-            beforeSend: function() {
-             $('#button-cart').button('loading');
-           },
-           complete: function() {
-             $('#button-cart').button('reset');
-           },
-           success: function(json) {
-             $('.alert, .text-danger').remove();
-             $('.form-group').removeClass('has-error');
+  //         $('#button-cart').on('click', function() {
+  //          $.ajax({
+  //           url: 'index.php?route=checkout/cart/add',
+  //           type: 'post',
+  //           data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+  //           dataType: 'json',
+  //           beforeSend: function() {
+  //            $('#button-cart').button('loading');
+  //          },
+  //          complete: function() {
+  //            $('#button-cart').button('reset');
+  //          },
+  //          success: function(json) {
+  //            $('.alert, .text-danger').remove();
+  //            $('.form-group').removeClass('has-error');
 
-             if (json['error']) {
-              if (json['error']['option']) {
-               for (i in json['error']['option']) {
-                var element = $('#input-option' + i.replace('_', '-'));
+  //            if (json['error']) {
+  //             if (json['error']['option']) {
+  //              for (i in json['error']['option']) {
+  //               var element = $('#input-option' + i.replace('_', '-'));
 
-                if (element.parent().hasClass('input-group')) {
-                 element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
-               } else {
-                 element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
-               }
-             }
-           }
+  //               if (element.parent().hasClass('input-group')) {
+  //                element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+  //              } else {
+  //                element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+  //              }
+  //            }
+  //          }
 
-           if (json['error']['recurring']) {
-             $('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
-           }
+  //          if (json['error']['recurring']) {
+  //            $('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+  //          }
 
-				// Highlight any found errors
-				$('.text-danger').parent().addClass('has-error');
-			}
+		// 		// Highlight any found errors
+		// 		$('.text-danger').parent().addClass('has-error');
+		// 	}
 
-			if (json['success']) {
-				$('.breadcrumb').after('<div class="alert alert-success">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+		// 	if (json['success']) {
+		// 		$('.breadcrumb').after('<div class="alert alert-success">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
-				$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
+		// 		$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
 
-				$('html, body').animate({ scrollTop: 0 }, 'slow');
+		// 		$('html, body').animate({ scrollTop: 0 }, 'slow');
 
-				$('#cart > ul').load('index.php?route=common/cart/info ul li');
-			}
-		},
-    error: function(xhr, ajaxOptions, thrownError) {
-      alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-    }
-  });
-         });
+		// 		$('#cart > ul').load('index.php?route=common/cart/info ul li');
+		// 	}
+		// },
+  //   error: function(xhr, ajaxOptions, thrownError) {
+  //     alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+  //   }
+  // });
+         // });
          //--></script>
          <script type="text/javascript"><!--
-          $('.date').datetimepicker({
-           pickTime: false
-         });
+         //  $('.date').datetimepicker({
+         //   pickTime: false
+         // });
 
-          $('.datetime').datetimepicker({
-           pickDate: true,
-           pickTime: true
-         });
+         //  $('.datetime').datetimepicker({
+         //   pickDate: true,
+         //   pickTime: true
+         // });
 
-          $('.time').datetimepicker({
-           pickDate: false
-         });
+         //  $('.time').datetimepicker({
+         //   pickDate: false
+         // });
 
           $('button[id^=\'button-upload\']').on('click', function() {
            var node = this;
@@ -481,13 +486,13 @@
          });
 
           $(document).ready(function() {
-           $('.img-thumbnails').magnificPopup({
-            type:'image',
-            delegate: 'a',
-            gallery: {
-            enabled:true
-           }
-         });
+         //   $('.img-thumbnails').magnificPopup({
+         //    type:'image',
+         //    delegate: 'a',
+         //    gallery: {
+         //    enabled:true
+         //   }
+         // });
          });
          </script>
          <?php echo $footer; ?>

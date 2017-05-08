@@ -56,7 +56,15 @@ input:focus{
 	color: black;
 	background-color: white;
 
-	}
+}
+.list-unstyled li a{
+	color: black;
+
+}
+.list-unstyled li a:hover{
+	text-decoration: underline;
+
+}
 /*---------------------- top head ----------------------*/
 #top-head {
 	background-color: rgba(255, 255, 255, 0.5);
@@ -84,7 +92,7 @@ input:focus{
 .lang ul li button{
 	background: transparent;
 	border: 0;
-	}
+}
 .lang ul li:hover{
 	opacity: 1;
 }
