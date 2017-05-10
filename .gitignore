@@ -1,2 +1,12 @@
+<<<<<<< HEAD
 /system/
 /image/
+=======
+# Created by .ignore support plugin (hsz.mobi)
+/system/
+.idea
+config.php
+/admin/config.php
+.htaccess
+index.php
+>>>>>>> d3035babbf7a8b5388a72cec9d55ad6c9a9ce57d

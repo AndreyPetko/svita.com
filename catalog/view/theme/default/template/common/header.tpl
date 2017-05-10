@@ -20,6 +20,24 @@
   <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
   <link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
   <link href="catalog/view/theme/default/stylesheet/style.css" rel="stylesheet">
+  <script>
+    $(document).ready(function() {
+      function startSearch() {
+        var search = $('#search-input').val();
+        window.location.href = '/index.php?route=product/search&search=' + search;
+      }
+
+      $('#search-submit').click(function() {
+        startSearch();
+      });
+
+      $('#search-input').keyup(function() {
+        if(event.keyCode == 13) {
+          startSearch();
+        }
+      });
+    });
+  </script>
   <?php foreach ($styles as $style) { ?>
   <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
   <?php } ?>
